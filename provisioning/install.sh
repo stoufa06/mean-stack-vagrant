@@ -31,7 +31,7 @@ function install_nodejs {
     source ~/.bashrc
     source ~/.nvm/nvm.sh
 
-    # Using latest angular package.json to compatible working node and npm version
+    # # Using latest angular package.json to compatible working node and npm version
     # extract_angular_versions
 
     echo  "Installing node version $NODEVERSION"
@@ -41,8 +41,8 @@ function install_nodejs {
 
 function install_angular {
     # create node_modules outside shared folder and create symblic link to it.
-    mkdir -p /home/vagrant/node_modules/frontend /home/vagrant/app/frontend
-    ln -s /home/vagrant/node_modules/frontend /home/vagrant/app/frontend/node_modules
+    mkdir -p /home/vagrant/frontend/node_modules /home/vagrant/app/frontend
+    ln -s /home/vagrant/frontend/node_modules /home/vagrant/app/frontend/node_modules
 
     echo n | npm install -g @angular/cli  
     cd /home/vagrant/app 
@@ -51,8 +51,8 @@ function install_angular {
 
 function install_express {
     # create node_modules outside shared folder and create symblic link to it.
-    mkdir -p /home/vagrant/node_modules/backend /home/vagrant/app/backend
-    ln -s /home/vagrant/node_modules/backend /home/vagrant/app/backend/node_modules
+    mkdir -p /home/vagrant/backend/node_modules /home/vagrant/app/backend
+    ln -s /home/vagrant/backend/node_modules /home/vagrant/app/backend/node_modules
 
     cd /home/vagrant/app/backend
     npm init -y
@@ -67,7 +67,7 @@ function extract_angular_versions {
 }
 
 sudo DEBIAN_FRONTEND=noninteractive apt-get update -y
-sudo DEBIAN_FRONTEND=noninteractive apt-get upgrade -y
+#sudo DEBIAN_FRONTEND=noninteractive apt-get upgrade -y
 
 
 echo "Installing nodejs"
@@ -85,6 +85,8 @@ install_angular
 echo "Installing express" 
 install_express
 
+# mv -t /home/vagrant/app /home/vagrant/tmp/frontend /home/vagrant/tmp/backend 
+# rm -r /home/vagrant/tmp
 
 
 
